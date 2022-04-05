@@ -24,11 +24,21 @@ https://docs.nvidia.com/deeplearning/cudnn/support-matrix/index.html
 
 
 ## Installing the drivers
-### CUDA, cuDNN
-We will start by getting the correct version of CUDA drivers from the NVIDIA website.  
-In this example, we will go through the process and install Tensorflow 1.13.1.
-
+### CUDA, cuDNN 
+In this example, we will go through the process and install Tensorflow 1.12.0.  
+We will start by getting the correct version of CUDA drivers from the NVIDIA website.
 
 >You'll need a developer account for getting the drivers.  
->You can register the developer account at this link: 
+>You can register the developer account at this [link](https://developer.nvidia.com/login)
+
+From the Tensorflow compatibility table, we can see that we need to download CUDA 9.0 and cuDNN 7:
+Version | Python Version | GCC | cuDNN | CUDA
+--- | --- | --- | --- | --- |
+tensorflow-gpu-1.12.0 | python 3.3-3.6 | GCC 4.8 | 7.9.5 | 9.0
+>Tip: you can grab the latest cuDNN version available for specific CUDA installation.
+
+The archived versions are available at:  
+[CUDA](https://developer.nvidia.com/cuda-toolkit-archive)  
+[cuDNN](https://developer.nvidia.com/rdp/cudnn-archive)
+
 
