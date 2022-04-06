@@ -70,7 +70,7 @@ That's it for the CUDA part. Now let's jump to cuDNN.
 
 ### cuDNN
 The NVIDIA CUDA Deep Neural Network library (cuDNN) is a GPU-accelerated library of primitives for deep neural networks. 
-In our case, we need a 7.4 cuDNN version. Go to [cuDNN Archive Page](https://developer.nvidia.com/rdp/cudnn-archive), scroll down until you'll see **cuDNN v7.4.2 for CUDA 10.0**, and click on the cuDNN Library for Linux:
+In our case, we need a **7.4 cuDNN version**. Go to [cuDNN Archive Page](https://developer.nvidia.com/rdp/cudnn-archive), scroll down until you'll see **cuDNN v7.4.2 for CUDA 10.0**, and click on the cuDNN Library for Linux:
 ![](https://user-images.githubusercontent.com/14073415/161923701-b2540046-9bdc-4ecd-832d-6dc65defe2bf.png)
 
 Go to the terminal and install cuDNN by running these commands:
@@ -91,7 +91,7 @@ sudo cp cuda/lib64/libcudnn* /usr/local/cuda-<>/lib64
 sudo chmod a+r /usr/local/cuda-<>/include/cudnn*.h /usr/local/cuda-<>/lib64/libcudnn*
 ```
 
-After that, you can verify installation by running nvcc --version
+After that, you can verify installation by running ```nvcc --version```
 >Tip: you can find the full installation guide [here](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html).
   
 ### GCC
@@ -142,7 +142,7 @@ You will see a full list of available CUDA drivers as folders like this:
 
   
 ### Setting up CUDA path variable
-To make our Conda environments choose the correct CUDA version, we need to modify bashrc file:
+To make our Conda environments choose the correct CUDA version, we need to modify **bashrc** file:
 ```shell
 sudo gedit ~/.bashrc
 ```
