@@ -73,7 +73,7 @@ The NVIDIA CUDA Deep Neural Network library (cuDNN) is a GPU-accelerated library
 In our case, we need a 7.4 cuDNN version. Go to [cuDNN Archive Page](https://developer.nvidia.com/rdp/cudnn-archive), scroll down until you'll see **cuDNN v7.4.2 for CUDA 10.0**, and click on the cuDNN Library for Linux:
 ![](https://user-images.githubusercontent.com/14073415/161923701-b2540046-9bdc-4ecd-832d-6dc65defe2bf.png)
 
-  
+Go to the terminal and install cuDNN by running these commands:
 ```shell
 tar -xzvf cudnn-10.0-linux-x64-v7.4.2.24.tgz
 sudo cp cuda/include/cudnn*.h /usr/local/cuda-10.0/include
@@ -185,4 +185,5 @@ conda list cuda
 ![](https://github.com/Uasmi/cudos/blob/main/pictures/cuda-verified.png?raw=true)
  
 Thats it! You are now free to use any combination of CUDA/cuDNN drivers for various frameworks you want.
+  
 Feel free to post an Issue if you encounter any problem.
