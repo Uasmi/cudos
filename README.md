@@ -1,5 +1,4 @@
-# Cudo's
-Managing Multiple Cuda Versions on your system.
+# Cudo's - Managing Multiple Cuda Versions on your system.
 
 ## Overview
 Training and developing machine learning models require using various frameworks installed on your computer. Sometimes it results in multiple driver versions in your environments, which can become a hassle to match and debug.
@@ -129,9 +128,61 @@ sudo ln -s /usr/bin/gcc-7 /usr/local/cuda-10.0/bin/gcc
 sudo ln -s /usr/bin/g++-7 /usr/local/cuda-10.0/bin/g++
 ```
 
-## Managing multiple CUDA/GCC
+## Managing multiple CUDA versions
 ### Pre-work
-Before jumping into the last steps of this guide, 
-### CUDA
-In order to make our Conda environments to choose proper CUDA version, we need to modify.
+Before jumping into the last steps of this guide, it is a good time to install all the required CUDA versions on your system (you can repeat the steps above for each version of CUDA). 
+After doing so, you can get a list of all CUDA versions by running this command:
+```shell
+cd /var/local
+ls
+```
   
+You will see a full list of available CUDA drivers as folders like this:
+![](https://user-images.githubusercontent.com/14073415/161936368-aa65c2a1-890b-4ab8-af0e-3e7c6997c59d.png)
+
+  
+### Setting up CUDA path variable
+To make our Conda environments choose the correct CUDA version, we need to modify bashrc file:
+```shell
+sudo gedit ~/.bashrc
+```
+ 
+Now scroll to the bottom of the file and add:
+```shell
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+```
+  
+You should add all the required CUDA versions to this file, so in the end, it will look something like this:
+```shell
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.1/lib64:/usr/local/cuda-11.2/lib64:/usr/local/cuda-11/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+```
+
+Save the file and restart your computer.
+  
+### Verifying installation
+Now, let's run nvcc --version to check the default CUDA version on our system:
+![](https://user-images.githubusercontent.com/14073415/161940141-588525d2-a394-472f-b2b2-e44c232ffeae.png)
+
+In my case, you can see that the version is 11.0.
+
+Let's verify that everything works correctly by creating a new Conda environment with 1.13.1 version of Tensorflow:
+```shell
+conda create -n tensorflow-1.13 python=3.6
+conda activate tensorflow-1.13
+conda install tensorflow-gpu==1.13.1
+python -c 'import tensorflow as tf; print(tf.__version__); print(tf.test.gpu_device_name()); print(tf.test.is_gpu_available())'
+```
+You will see Tensorflow version information as well as available GPUs.
+
+Let's check if we have a proper CUDA driver selected, by running:
+```shell
+conda list cuda
+```
+![](https://github.com/Uasmi/cudos/blob/main/pictures/cuda-verified.png?raw=true)
+ 
+Thats it! You are now free to use any combination of CUDA/cuDNN drivers for various frameworks you want.
+Feel free to post an Issue if you encounter any problem.
